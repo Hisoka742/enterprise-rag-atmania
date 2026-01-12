@@ -1,22 +1,40 @@
-# Enterprise RAG Challenge 
+# Enterprise RAG Challenge — Solution
 
-Hybrid Retrieval-Augmented Generation (RAG) system for answering structured questions from enterprise PDF documents. 
-**Status:** Valid submission, stable pipeline
+This repository contains a **Hybrid Retrieval-Augmented Generation (RAG)** solution for answering structured questions from enterprise PDF reports.
+
+The system builds per-company indexes from PDF documents and uses a combination of **dense (FAISS)** and **sparse (BM25)** retrieval, followed by an LLM to generate final answers.
+
+
+---
+
+## Solution Overview
+
+Pipeline:
+1. Read PDF files (with OCR fallback)
+2. Split text into chunks
+3. Build embeddings and FAISS index
+4. Build BM25 index
+5. Hybrid retrieval (dense + sparse)
+6. LLM-based answer generation
+7. Export results to `submission.json`
 
 ---
 
-## Method
-- PDF text extraction (+ OCR fallback)
-- Chunking
-- Dense retrieval (FAISS embeddings)
-- Sparse retrieval (BM25)
-- Hybrid ranking
-- LLM answer generation
-- Strict output normalization
+## Project Structure
 
-Indexes are built **per company** to reduce cross-document noise.
+```bash
 
----
+enterprise-rag-atmania/
+├── data/
+│ ├── pdf/ # PDF reports
+│ └── questions.json # Competition questions
+├── rag/ # RAG modules
+├── outputs/ # Generated submissions
+├── main.py # Entry point
+├── requirements.txt
+└── README.md
+
+```
 
 ## Run
 
